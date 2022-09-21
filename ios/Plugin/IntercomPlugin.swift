@@ -40,7 +40,7 @@ public class IntercomPlugin: CAPPlugin {
     }
       
     if (name != nil) {
-        userAttributes.name = name
+        attributes.name = name
     }
 
     if (userId != nil || email != nil) {
@@ -49,7 +49,7 @@ public class IntercomPlugin: CAPPlugin {
                 case .success:
                     call.resolve()
                 case .failure(let error):
-                    call.reject(error)
+                    call.reject("Error occurred")
                 }
             }
     }else{
@@ -63,7 +63,7 @@ public class IntercomPlugin: CAPPlugin {
         case .success:
             call.resolve()
         case .failure(let error):
-            call.reject(error)
+            call.reject("Error occurred")
         }
     }
     call.resolve()
