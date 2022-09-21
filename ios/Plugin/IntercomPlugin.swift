@@ -24,7 +24,7 @@ public class IntercomPlugin: CAPPlugin {
     Intercom.setDeviceToken(deviceToken)
   }
 
-  @objc func loginUserWithUserAttributes(_ call: CAPPluginCall) {
+  @objc func registerIdentifiedUser(_ call: CAPPluginCall) {
     let userId = call.getString("userId")
     let email = call.getString("email")
     let name = call.getString("name")
@@ -57,7 +57,7 @@ public class IntercomPlugin: CAPPlugin {
     }
   }
 
-  @objc func loginUnidentifiedUser(_ call: CAPPluginCall) {
+  @objc func registerUnidentifiedUser(_ call: CAPPluginCall) {
     Intercom.loginUnidentifiedUser { result in
         switch result {
         case .success:
