@@ -24,26 +24,48 @@ public class IntercomPlugin: CAPPlugin {
     Intercom.setDeviceToken(deviceToken)
   }
 
-  @objc func registerIdentifiedUser(_ call: CAPPluginCall) {
+  @objc func loginUserWithUserAttributes(_ call: CAPPluginCall) {
     let userId = call.getString("userId")
     let email = call.getString("email")
+    let name = call.getString("name")
+      
+    let attributes = ICMUserAttributes()
+      
+    if (email != nil){
+        attributes.email = email
+    }
+      
+    if (userId != nil){
+        attributes.userId = userId
+    }
+      
+    if (name != nil) {
+        userAttributes.name = name
+    }
 
-    if (userId != nil && email != nil) {
-      Intercom.registerUser(withUserId: userId!, email: email!)
-      call.resolve()
-    }else if (userId != nil) {
-      Intercom.registerUser(withUserId: userId!)
-      call.resolve()
-    }else if (email != nil) {
-      Intercom.registerUser(withEmail: email!)
-      call.resolve()
+    if (userId != nil || email != nil) {
+        Intercom.loginUser(with: attributes) { result in
+                switch result {
+                case .success:
+                    call.resolve()
+                case .failure(let error):
+                    call.reject(error)
+                }
+            }
     }else{
       call.reject("No user registered. You must supply an email, userId or both")
     }
   }
 
-  @objc func registerUnidentifiedUser(_ call: CAPPluginCall) {
-    Intercom.registerUnidentifiedUser()
+  @objc func loginUnidentifiedUser(_ call: CAPPluginCall) {
+    Intercom.loginUnidentifiedUser { result in
+        switch result {
+        case .success:
+            call.resolve()
+        case .failure(let error):
+            call.reject(error)
+        }
+    }
     call.resolve()
   }
 
@@ -71,7 +93,7 @@ public class IntercomPlugin: CAPPlugin {
     }
     let customAttributes = call.getObject("customAttributes")
     userAttributes.customAttributes = customAttributes
-    Intercom.updateUser(userAttributes)
+    Intercom.updateUser(with: userAttributes)
     call.resolve()
   }
 
