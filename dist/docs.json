@@ -242,6 +242,22 @@
           "IntercomPushNotificationData"
         ],
         "slug": "receivepush"
+      },
+      {
+        "name": "displayArticle",
+        "signature": "(options: { articleId: string; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ articleId: string; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "displayarticle"
       }
     ],
     "properties": []

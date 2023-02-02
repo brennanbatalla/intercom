@@ -33,6 +33,9 @@ export interface IntercomPlugin {
         value: string;
     }): Promise<void>;
     receivePush(notification: IntercomPushNotificationData): Promise<void>;
+    displayArticle(options: {
+        articleId: string;
+    }): Promise<void>;
 }
 export interface IntercomPushNotificationData {
     conversation_id: string;

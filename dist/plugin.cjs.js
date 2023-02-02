@@ -69,6 +69,9 @@ class IntercomWeb extends core.WebPlugin {
     sendPushTokenToIntercom(options) {
         throw this.unimplemented('Not implemented on web.');
     }
+    async displayArticle(options) {
+        throw this.unimplemented('Not implemented on web.');
+    }
 }
 const Intercom = new IntercomWeb();
 

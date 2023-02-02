@@ -66,6 +66,9 @@ var capacitorIntercom = (function (exports, core) {
         sendPushTokenToIntercom(options) {
             throw this.unimplemented('Not implemented on web.');
         }
+        async displayArticle(options) {
+            throw this.unimplemented('Not implemented on web.');
+        }
     }
     const Intercom = new IntercomWeb();
 

@@ -36,6 +36,9 @@ export declare class IntercomWeb extends WebPlugin implements IntercomPlugin {
     sendPushTokenToIntercom(options: {
         value: string;
     }): Promise<void>;
+    displayArticle(options: {
+        articleId: string;
+    }): Promise<void>;
 }
 declare const Intercom: IntercomWeb;
 export { Intercom };

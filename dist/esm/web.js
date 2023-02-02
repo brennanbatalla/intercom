@@ -69,6 +69,10 @@ export class IntercomWeb extends WebPlugin {
         options;
         throw this.unimplemented('Not implemented on web.');
     }
+    async displayArticle(options) {
+        options;
+        throw this.unimplemented('Not implemented on web.');
+    }
 }
 const Intercom = new IntercomWeb();
 export { Intercom };
